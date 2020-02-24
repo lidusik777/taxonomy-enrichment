@@ -23,9 +23,9 @@ def get_data(train_file):
         if idx == 0:
             continue
         row = line.strip('\n').split('\t')
-        words = row[1].split(', ')
-        parents = row[2].strip("[]").split(', ')
-        parents = sorted([r.strip("'") for r in parents])
+        words = row[0].split(', ')
+        parents = row[1].strip("[]").split(', ')
+        parents = sorted([r.strip("'").strip("\"") for r in parents])
         for w in words:
             word2parents[w].append(parents)
             word2synset[w].add(row[0])
