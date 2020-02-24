@@ -19,7 +19,7 @@ def get_data(train_file):
     G = nx.Graph()
     word2synset = defaultdict(set)
     synset2word = defaultdict(set)
-    for idx, line in enumerate(open(train_file)):
+    for idx, line in enumerate(open(train_file, encoding='utf-8')):
         if idx == 0:
             continue
         row = line.strip('\n').split('\t')
@@ -67,7 +67,7 @@ def generate_split(components, synset2word, word2parents, partition=[0.8, 0.1, 0
 # the data is written in the format accepted by the evaluation script as reference
 def write_data(words, word2parents, out_file):
     words = sorted(words)
-    out = open(out_file, 'w')
+    out = open(out_file, 'w', encoding='utf-8')
     for w in words:
         for parents in word2parents[w]:
             out.write('%s\t%s\n' % (w, parents))
